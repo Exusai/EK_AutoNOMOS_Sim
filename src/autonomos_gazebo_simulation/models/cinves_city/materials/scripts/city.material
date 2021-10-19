@@ -1,0 +1,14 @@
+material city
+{
+	receive_shadows_off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ROADHR.png
+      }
+    }
+  }
+}

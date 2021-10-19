@@ -1,0 +1,14 @@
+material cinves_city2
+{
+  receive_shadows off
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture ROADHR.png
+      }
+    }
+  }
+}
