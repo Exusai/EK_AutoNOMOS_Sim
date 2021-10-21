@@ -5,3 +5,5 @@ src/CMakeLists.txt
 **/install/*
 **/src/Gazebo_plugin/build/*
 .DS_Store
+/src/autonomos_gazebo_simulation/scripts/pista1
+/src/autonomos_gazebo_simulation/scripts/pista2
