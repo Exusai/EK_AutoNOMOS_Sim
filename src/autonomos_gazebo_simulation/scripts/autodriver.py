@@ -53,8 +53,8 @@ def callback_V(data0):
 	#print()
 	interpreter.set_tensor(input_details[0]['index'], im)
 	interpreter.invoke()
-	u = interpreter.get_tensor(output_details[0]['index'])[0][0]
-	u = ((u + 1)/2)*180 + 45
+	y = interpreter.get_tensor(output_details[0]['index'])[0][0]
+	u = ((y + 1)/2)*180
 	#u = int16(u)
 	print('steering ',u)
 
