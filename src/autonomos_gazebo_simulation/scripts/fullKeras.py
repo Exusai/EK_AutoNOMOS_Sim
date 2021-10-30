@@ -49,13 +49,13 @@ def callback_V(data0):
 	#print()
 	#interpreter.set_tensor(input_details[0]['index'], im)
 	#interpreter.invoke()
-	u = model(im, training = False)[0][0]
-	u = ((u + 1)/2)*180
+	y = model(im, training = False)[0][0]
+	u = ((y + 1)/2)*180
 	u = int(u)
 	print('steering ',u)
 
 	Vpub.publish(v) 
-	Spub.publish(int(u))
+	Spub.publish(u)
 
 
 if __name__ == '__main__':
