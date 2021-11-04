@@ -10,7 +10,7 @@ u = 90
 v = -400 
 
 
-interpreter = tf.lite.Interpreter('models/modelBinned.tflite')
+interpreter = tf.lite.Interpreter('models/modelBinAug3.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 print('Input details: ', input_details)
@@ -41,8 +41,8 @@ def callback_V(data0):
 	interpreter.set_tensor(input_details[0]['index'], im)
 	interpreter.invoke()
 	y = interpreter.get_tensor(output_details[0]['index'])[0][0]
-	#u = ((y + 1)/2)*180
-	u = y
+	u = ((y + 1)/2)*180
+	#u = y
 	#u = int16(u)
 	print('steering ',u)
 
