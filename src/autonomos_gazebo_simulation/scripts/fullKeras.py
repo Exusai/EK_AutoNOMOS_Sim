@@ -11,7 +11,7 @@ v = -600
 
 
 
-model = tf.keras.models.load_model('models/modelBinned.h5', compile = False)
+model = tf.keras.models.load_model('models/modelBinAug3.h5', compile = False)
 
 def callback_V(data0):
 	global u, v
@@ -44,8 +44,8 @@ def callback_V(data0):
 	#interpreter.set_tensor(input_details[0]['index'], im)
 	#interpreter.invoke()
 	y = model(im, training = False)[0][0]
-	#u = ((y + 1)/2)*180
-	u = y
+	u = ((y + 1)/2)*180
+	#u = y
 	u = int(u)
 	print('steering ',u)
 
