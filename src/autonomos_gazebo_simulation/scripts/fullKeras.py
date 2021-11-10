@@ -11,7 +11,7 @@ v = -600
 
 
 
-model = tf.keras.models.load_model('models/modelBinAug3.h5', compile = False)
+model = tf.keras.models.load_model('models/myModel1.h5', compile = False)
 
 def callback_V(data0):
 	global u, v
@@ -51,7 +51,7 @@ def callback_V(data0):
 
 	Vpub.publish(v) 
 	Spub.publish(u)
-	#rospy.Rate(6).sleep()
+	#rospy.Rate(10).sleep()
 
 
 if __name__ == '__main__':

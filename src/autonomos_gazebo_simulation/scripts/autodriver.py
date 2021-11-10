@@ -7,10 +7,10 @@ from std_msgs.msg import Int16
 import tensorflow as tf
 
 u = 90
-v = -400 
+v = -600 
 
 
-interpreter = tf.lite.Interpreter('models/modelBinAug3.tflite')
+interpreter = tf.lite.Interpreter('models/myModel1.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 print('Input details: ', input_details)
@@ -49,7 +49,7 @@ def callback_V(data0):
 	Vpub.publish(v) 
 	Spub.publish(int(u))
 
-	#rospy.Rate(6).sleep()
+	#rospy.Rate(10).sleep()
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@
 
 #init joy: rosrun joy joy_node 
 import cv2
+from numpy.core.records import record
 import rospy
 import numpy as np
 from sensor_msgs.msg import Image, Joy
@@ -9,6 +10,9 @@ from std_msgs.msg import Int16
 
 joy = 0
 trigger = 0
+
+k = 1
+
 def joyReceiver(data):
 	global joy, trigger
 	joy = data.axes[0]
@@ -25,6 +29,9 @@ def clamp(n):
 
 def callback_V(data0):
 	global trigger, joy
+	global k
+
+	record = False
 
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
 	cv2.imshow("img", im)
@@ -33,6 +40,13 @@ def callback_V(data0):
 	u = int(clamp((joy + 1.0)/2*180))
 	#print('steering ', u)
 	v = int(trigger * 800)
+
+	if record:
+		f1 = open('steering.csv','a+')
+		f1.write("%5.8f\n" %(joy))
+		f1.close()
+		cv2.imwrite('dataset/im_road'+str(k)+'.png',im)
+		k = k+1
 
 	Vpub.publish(v) 
 	Spub.publish(u)
