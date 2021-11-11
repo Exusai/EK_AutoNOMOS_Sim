@@ -7,7 +7,7 @@ from std_msgs.msg import Int16
 import tensorflow as tf
 
 u = 90
-v = -600 
+v = -300 
 
 
 interpreter = tf.lite.Interpreter('models/myModel3.tflite')
