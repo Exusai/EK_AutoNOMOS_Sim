@@ -5,16 +5,18 @@ import numpy as np
 from sensor_msgs.msg import Image
 from std_msgs.msg import Int16
 import tensorflow as tf
+import matplotlib.pyplot as plt
 
 u = 90
-v = -600 
-
+v = -500
+#uArray = []
 
 
 model = tf.keras.models.load_model('models/myModel3.h5', compile = False)
 
 def callback_V(data0):
 	global u, v
+	#global uArray
 	global interpreter, input_details, output_details
 	
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
@@ -45,6 +47,7 @@ def callback_V(data0):
 	#interpreter.invoke()
 	y = model(im, training = False)[0][0]
 	u = ((y + 1)/2)*180
+	#uArray.append(u)
 	#u = y
 	u = int(u)
 	print('steering ',u)
