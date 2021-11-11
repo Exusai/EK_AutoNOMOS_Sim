@@ -11,7 +11,7 @@ v = -600
 
 
 
-model = tf.keras.models.load_model('models/myModel1.h5', compile = False)
+model = tf.keras.models.load_model('models/myModel3.h5', compile = False)
 
 def callback_V(data0):
 	global u, v
