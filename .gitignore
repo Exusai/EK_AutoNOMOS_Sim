@@ -8,4 +8,4 @@ src/CMakeLists.txt
 /src/autonomos_gazebo_simulation/scripts/pista1
 /src/autonomos_gazebo_simulation/scripts/pista2
 /src/autonomos_gazebo_simulation/scripts/dataset
-
+/src/autonomos_gazebo_simulation/scripts/dataTRAIN

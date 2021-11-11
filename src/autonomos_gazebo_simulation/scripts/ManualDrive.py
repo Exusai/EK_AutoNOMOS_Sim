@@ -31,7 +31,7 @@ def callback_V(data0):
 	global trigger, joy
 	global k
 
-	record = False
+	record = True
 
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
 	cv2.imshow("img", im)
