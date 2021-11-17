@@ -12,12 +12,18 @@ joy = 0
 trigger = 0
 
 k = 1
+record = False
+recordBuffer = False
 
 def joyReceiver(data):
-	global joy, trigger
+	global joy, trigger, record, recordBuffer
 	joy = data.axes[0]
 	trigger = min(data.axes[5], 0)
-	#print(u)
+	a = data.buttons[0]
+	if a == 1:
+		record = not recordBuffer
+		recordBuffer = record
+		#print("RECORD OFF")
 
 def clamp(n):
     if n > 180:
@@ -30,8 +36,7 @@ def clamp(n):
 def callback_V(data0):
 	global trigger, joy
 	global k
-
-	record = True
+	global record
 
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
 	cv2.imshow("img", im)
@@ -42,21 +47,27 @@ def callback_V(data0):
 	v = int(trigger * 800)
 
 	if record:
-		f1 = open('steering.csv','a+')
+		""" f1 = open('steering.csv','a+')
 		f1.write("%5.8f\n" %(joy))
 		f1.close()
 		cv2.imwrite('dataset/im_road'+str(k)+'.png',im)
-		k = k+1
+		k = k+1 """
+		print(" Recording    ", end="\r")
+	else:
+		print(" NOT Recording", end="\r")
 
 	Vpub.publish(v) 
 	Spub.publish(u)
 
 
 if __name__ == '__main__':
-    print("Iniciando")
-    rospy.init_node('TMR_01', anonymous=True)
-    Vpub = rospy.Publisher('/AutoNOMOS_mini/manual_control/speed',Int16,queue_size=3)
-    Spub = rospy.Publisher('/AutoNOMOS_mini/manual_control/steering',Int16,queue_size=3)
-    rospy.Subscriber("/app/camera/rgb/image_raw",Image,callback_V)	
-    rospy.Subscriber("/joy", Joy, joyReceiver)
-    rospy.spin()
+	print("Iniciando")
+	print("Gatillo para acelerar")
+	print("A para grabar")
+	print("--------------")
+	rospy.init_node('TMR_01', anonymous=True)
+	Vpub = rospy.Publisher('/AutoNOMOS_mini/manual_control/speed',Int16,queue_size=3)
+	Spub = rospy.Publisher('/AutoNOMOS_mini/manual_control/steering',Int16,queue_size=3)
+	rospy.Subscriber("/app/camera/rgb/image_raw",Image,callback_V)	
+	rospy.Subscriber("/joy", Joy, joyReceiver)
+	rospy.spin()
