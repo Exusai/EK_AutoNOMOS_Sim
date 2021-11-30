@@ -47,11 +47,11 @@ def callback_V(data0):
 	v = int(trigger * 800)
 
 	if record:
-		""" f1 = open('steering.csv','a+')
+		f1 = open('steering.csv','a+')
 		f1.write("%5.8f\n" %(joy))
 		f1.close()
 		cv2.imwrite('dataset/im_road'+str(k)+'.png',im)
-		k = k+1 """
+		k = k+1
 		print(" Recording    ", end="\r")
 	else:
 		print(" NOT Recording", end="\r")

@@ -10,7 +10,7 @@ u = 90
 v = -300 
 
 
-interpreter = tf.lite.Interpreter('models/myModel3.tflite')
+interpreter = tf.lite.Interpreter('models/DriverV0.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 print('Input details: ', input_details)
