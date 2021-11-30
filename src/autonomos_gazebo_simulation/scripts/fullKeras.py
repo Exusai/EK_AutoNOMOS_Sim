@@ -9,10 +9,8 @@ import matplotlib.pyplot as plt
 
 u = 90
 v = -500
-#uArray = []
 
-
-model = tf.keras.models.load_model('models/myModel3.h5', compile = False)
+model = tf.keras.models.load_model('models/DriverV0.h5', compile = False)
 
 def callback_V(data0):
 	global u, v
@@ -28,13 +26,13 @@ def callback_V(data0):
 	cv2.imshow("img", im)
 	cv2.waitKey(1)
 	#im = im.astype('float32')
-	im = (im/127.5) - 1
+	#im = (im/127.5) - 1
+	im = (im/255)
+	im = tf.image.adjust_contrast(im, 2)
 	im = tf.cast(im, tf.float32)
 	
 	#im = tf.image.rgb_to_yuv(im)
 	#im = cv2.cvtColor(im, cv2.COLOR_BGR2YUV)
-	
-	
 	
 	im = np.expand_dims(im, axis = 0)	
 	#print(im.shape)
@@ -45,7 +43,7 @@ def callback_V(data0):
 	#print()
 	#interpreter.set_tensor(input_details[0]['index'], im)
 	#interpreter.invoke()
-	y = model(im, training = False)[0][0]
+	y = model(im, training = True)[0][0]
 	u = ((y + 1)/2)*180
 	#uArray.append(u)
 	#u = y
