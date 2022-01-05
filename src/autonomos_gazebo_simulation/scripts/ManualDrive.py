@@ -39,6 +39,7 @@ def callback_V(data0):
 	global record
 
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
+	im = im[:,:,::-1]
 	cv2.imshow("img", im)
 	cv2.waitKey(1)
 	#print('joy ', joy)
