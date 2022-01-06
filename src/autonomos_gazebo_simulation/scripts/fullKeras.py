@@ -18,6 +18,7 @@ def callback_V(data0):
 	global interpreter, input_details, output_details
 	
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
+	im = im[:,:,::-1]
 	#imagen0 = bridge.imgmsg_to_cv2(data0, "bgr8")
 	#imagen0 = cv2.cvtColor(imagen0, cv2.COLOR_BGR2RGB)
 	#im = imagen0.astype(np.float32)
