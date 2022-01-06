@@ -7,10 +7,10 @@ from std_msgs.msg import Int16
 import tensorflow as tf
 
 u = 90
-v = -300 
+v = -600 
 
 
-interpreter = tf.lite.Interpreter('models/DriverV0.tflite')
+interpreter = tf.lite.Interpreter('models/DriverCITY.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 print('Input details: ', input_details)
@@ -22,6 +22,7 @@ def callback_V(data0):
 	
 	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
 	# im = cv2.cvtColor(im, cv2.COLOR_BGR2YUV)
+	im = im[:,:,::-1]
 	im = im[270:405, :, :]
 	im = cv2.resize(im, (200,66))
 	cv2.imshow("img", im)
