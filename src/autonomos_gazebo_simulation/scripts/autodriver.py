@@ -7,7 +7,7 @@ from std_msgs.msg import Int16
 import tensorflow as tf
 
 u = 90
-v = -600 
+v = -800 
 
 
 interpreter = tf.lite.Interpreter('models/DriverCITY.tflite')
