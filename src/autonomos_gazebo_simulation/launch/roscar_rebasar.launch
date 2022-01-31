@@ -1,0 +1,24 @@
+<!-- EXAMPLE OF ROS LAUNCH FILE FOR THE INTERSECTION  -->
+<!-- ONLY LAUNCHES GAZEBO WITH THE INTERSECTION WORLD -->
+<launch>
+  <!-- INCLUDE THE LAUNCH FILE OF EMPTY WORLD IN THE gazebo_ros PACKAGE -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="roscar_city_rebasar.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="debug" value="false"/>
+
+    <!-- <arg name = "include">
+      <arg name="uri" value="model://roscar_auto_v1"/>
+      <arg name="pose" value="10.201710 -3.59 0.037493 0 0 -0.003936"/>
+    </include> -->
+    
+    <!-- <include>
+      <uri>model://roscar_auto_v1</uri>
+      <pose> 10.201710 -5.860448 0.029745 0 0 1.577806 </pose>
+    </include> -->
+  </include>
+
+</launch>
+	
