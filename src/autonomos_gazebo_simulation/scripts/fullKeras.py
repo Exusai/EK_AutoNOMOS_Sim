@@ -44,7 +44,7 @@ def callback_V(data0):
 	#print()
 	#interpreter.set_tensor(input_details[0]['index'], im)
 	#interpreter.invoke()
-	y = model(im, training = True)[0][0]
+	y = model(im, training = False)[0][0]
 	u = ((y + 1)/2)*180
 	#uArray.append(u)
 	#u = y
