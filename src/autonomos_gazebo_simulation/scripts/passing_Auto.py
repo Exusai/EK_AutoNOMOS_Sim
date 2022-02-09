@@ -74,51 +74,6 @@ class driver():
 		print(speed, angle)
 		
 
-		
-def callback_V(data0):
-	global u, v
-	#global uArray
-	global interpreter, input_details, output_details
-	
-	im = np.frombuffer(data0.data, dtype=np.uint8,).reshape(data0.height, data0.width, -1)
-	im = im[:,:,::-1]
-	#imagen0 = bridge.imgmsg_to_cv2(data0, "bgr8")
-	#imagen0 = cv2.cvtColor(imagen0, cv2.COLOR_BGR2RGB)
-	#im = imagen0.astype(np.float32)
-	im = im[270:405, :, :]
-	im = cv2.resize(im, (200,66))
-	cv2.imshow("img", im)
-	cv2.waitKey(1)
-	#im = im.astype('float32')
-	#im = (im/127.5) - 1
-	im = (im/255)
-	im = tf.image.adjust_contrast(im, 2)
-	im = tf.cast(im, tf.float32)
-	
-	#im = tf.image.rgb_to_yuv(im)
-	#im = cv2.cvtColor(im, cv2.COLOR_BGR2YUV)
-	
-	im = np.expand_dims(im, axis = 0)	
-	#print(im.shape)
-	
-	#print(im)
-	#im = tf.cast(im, tf.float32)
-	#im = tf.expand_dims(im, axis = 0)
-	#print()
-	#interpreter.set_tensor(input_details[0]['index'], im)
-	#interpreter.invoke()
-	#y = model(im, training = True)[0][0]
-	#u = ((y + 1)/2)*180
-	#uArray.append(u)
-	#u = y
-	#u = int(u)
-	#print('steering ',u)
-
-	#Vpub.publish(v) 
-	#Spub.publish(u)
-	#rospy.Rate(10).sleep()
-
-
 if __name__ == '__main__':
 	rospy.init_node('TMR_01',anonymous=True)												
 	driver()
