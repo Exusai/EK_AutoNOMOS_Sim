@@ -85,7 +85,7 @@ class driver():
 			ang = pred.numpy()[0][0]
 			vel = pred.numpy()[0][1]
 
-			speed = np.abs(vel)*-800*100
+			speed = np.abs(vel)*-800*10
 			angle = ((ang + 1)/2)*180
 			
 			self.Vpub.publish(int(speed))
