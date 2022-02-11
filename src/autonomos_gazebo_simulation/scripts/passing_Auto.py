@@ -21,7 +21,7 @@ class driver():
 		self.R = np.zeros(360)
 
 		#cam
-		self.imagen0 = np.zeros((480,640))
+		self.imagen0 = np.zeros((66,200))
 
 		rospy.Subscriber("/app/camera/rgb/image_raw",Image,self.callback_Vis)
 		rospy.Subscriber('/scan', LaserScan, self.callback_Lidar)
@@ -42,8 +42,9 @@ class driver():
 
 		im = np.frombuffer(data_vis.data, dtype=np.uint8,).reshape(data_vis.height, data_vis.width, -1)
 		im = im[:,:,::-1]
-		im = im[220:370, :, :]
-		im = cv2.resize(im, (360,66))
+		im = im[270:405, :, :]
+		im = cv2.resize(im, (200,66))
+		cv2.imshow("img", im)
 		im = (im/255)
 		im = tf.cast(im, tf.float32)
 		#print(im.shape)
@@ -51,23 +52,55 @@ class driver():
 		lidar = self.R[::-1]
 		lidar = tf.roll(lidar, 180, axis=0)
 		lidar /= 3
-		lidarImg = [lidar, lidar, lidar, lidar]
+		lidarImg = [
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+			lidar,
+		]
 		lidarImg = [lidarImg, lidarImg, lidarImg]
 		lidarImg = tf.cast(lidarImg, tf.float32)
 		lidarImg = tf.transpose(lidarImg, [1,2,0])
-		#print(lidarImg.shape)
-		
-		self.imagen0 = tf.concat([im, lidarImg], 0)
-		#self.imagen0 = tf.cast(self.imagen0, tf.float32)
-		self.imagen0 = np.expand_dims(self.imagen0, axis = 0)
 
+		cv2.imshow("lidar", lidarImg.numpy())
+		cv2.waitKey(1)
+		#print(lidarImg.shape)
+
+		im = tf.expand_dims(im, axis=0)
+		lidarImg = tf.expand_dims(lidarImg, axis=0)
+		
+		#self.imagen0 = tf.concat([im, lidarImg], 0)
+		#self.imagen0 = tf.cast(self.imagen0, tf.float32)
+		#imagenLidar = np.expand_dims(lidarImg, axis = 0)
+		#self.imagen0 = np.expand_dims(self.imagen0, axis = 0)
+
+		inputs = (im, lidarImg)
+		#inputs = tf.expand_dims(inputs, axis=0)
 		#print(self.imagen0.shape)
-		y = self.model(self.imagen0, training = False)
+		y = self.model(inputs, training = False)
 		ang = y.numpy()[0][0]
 		vel = y.numpy()[0][1]
 
-		speed = np.abs(vel)*-800*10
+		speed = np.abs(vel)*-800
 		angle = ((ang + 1)/2)*180
+
+		if abs(speed) <= 100: speed = -300
 		
 		self.Vpub.publish(int(speed))
 		self.Spub.publish(int(angle))
