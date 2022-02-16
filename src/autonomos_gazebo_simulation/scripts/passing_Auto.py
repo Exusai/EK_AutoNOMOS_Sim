@@ -14,7 +14,7 @@ v = -500
 
 class driver():
 	def __init__(self):
-		self.model = tf.keras.models.load_model('models/RevaseV0.h5', compile = False)
+		self.model = tf.keras.models.load_model('models/RevaseV1.h5', compile = False)
 
 		#V. Lidar
 		self.step = 0
@@ -100,7 +100,7 @@ class driver():
 		speed = np.abs(vel)*-800
 		angle = ((ang + 1)/2)*180
 
-		if abs(speed) <= 100: speed = -300
+		if abs(speed) <= 600: speed = -600
 		
 		self.Vpub.publish(int(speed))
 		self.Spub.publish(int(angle))

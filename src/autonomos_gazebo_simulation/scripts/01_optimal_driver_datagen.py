@@ -131,11 +131,11 @@ def callback_V(data0):
 	cv2.waitKey(1)
 
 	# Guarda el dataset
-	f1 = open('steering.csv','a+')
+	""" f1 = open('steering.csv','a+')
 	f1.write("%5.2f\n" %(u))
 	f1.close()
 	cv2.imwrite('dataset/im_road'+str(k)+'.png',imagen0)
-	k = k+1
+	k = k+1 """
 
 	Vpub.publish(v) 
 	Spub.publish(u)
