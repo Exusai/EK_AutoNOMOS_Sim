@@ -1,5 +1,5 @@
 <!--><-->
 <launch>
 	<node pkg="autonomos_gazebo_simulation" name="dyn_car01" type="dyn_car01.py"> </node>
-	<!--node pkg="autonomos_gazebo_simulation" name="dyn_car02" type="dyn_car02.py"> </node-->
+	<node pkg="autonomos_gazebo_simulation" name="dyn_car02" type="dyn_car02.py"> </node>
 </launch>
