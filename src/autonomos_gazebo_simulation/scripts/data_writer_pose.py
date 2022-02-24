@@ -10,7 +10,7 @@ def callback_O(data0):
 	x = data0.x
 	y = data0.y
 	yaw = data0.theta
-	f = open('/home/faber/EK_AutoNOMOS_Sim/src/autonomos_gazebo_simulation/scripts/eval/pose_NN_on_mov.csv','a+')
+	f = open('/home/faber/EK_AutoNOMOS_Sim/src/autonomos_gazebo_simulation/scripts/eval/pose_aanual_on_mov.csv','a+')
 	f.write("%5.2f	%5.2f	%5.2f	%5.2f\n" % (x, y, yaw, t))
 	f.close()
 #************************************************************************************************************
