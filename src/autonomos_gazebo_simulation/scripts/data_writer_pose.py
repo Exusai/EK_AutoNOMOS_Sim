@@ -35,4 +35,3 @@ if __name__ == '__main__':
 	rospy.Subscriber('/AutoNOMOS_mini/real_pose_from_gazebo',Pose2D, callback_O)
 	#rospy.Subscriber('/Dyn_car01/real_pose_from_gazebo',Pose2D, callback_1)
 	rospy.spin()		
-

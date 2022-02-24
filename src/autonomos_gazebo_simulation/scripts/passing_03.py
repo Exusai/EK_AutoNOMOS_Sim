@@ -29,7 +29,7 @@ class sensors_processing(object):
 		self.ey = 0
 		self.th = 0.0
 		self.ey_h = 0
-		self.i = 1810
+		self.i = 0
 		#V. Lidar
 		self.step = 0
 		self.R = np.zeros(360)
@@ -201,7 +201,7 @@ class sensors_processing(object):
 		
 		# Guarda el dataset
 		# Lidar
-		""" path = '/home/sherlock1804/EK_AutoNOMOS_Sim/src/dotmex_2022/scripts/modular_controllers/'
+		path = '/home/faber/EK_AutoNOMOS_Sim/src/autonomos_gazebo_simulation/scripts/dataTRAIN/'
 		f = open(path+'lidar.csv','a+')
 		for r in self.R: f.write('%5.2f	' % (r))
 		f.write('\n')
@@ -212,9 +212,7 @@ class sensors_processing(object):
 		g = open(path+'outputs.csv','a+')
 		g.write('%5.2f	%i\n' % (u, v))
 		g.close()
-		self.i = self.i+1 """
-		
-
+		self.i = self.i+1
 
 
 #**********************************************************************************************************************************
