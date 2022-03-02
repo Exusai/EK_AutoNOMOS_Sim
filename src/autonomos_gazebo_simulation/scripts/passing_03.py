@@ -201,7 +201,7 @@ class sensors_processing(object):
 		
 		# Guarda el dataset
 		# Lidar
-		path = '/home/faber/EK_AutoNOMOS_Sim/src/autonomos_gazebo_simulation/scripts/dataTRAIN/'
+		""" path = '/home/faber/EK_AutoNOMOS_Sim/src/autonomos_gazebo_simulation/scripts/dataTRAIN/'
 		f = open(path+'lidar.csv','a+')
 		for r in self.R: f.write('%5.2f	' % (r))
 		f.write('\n')
@@ -212,7 +212,7 @@ class sensors_processing(object):
 		g = open(path+'outputs.csv','a+')
 		g.write('%5.2f	%i\n' % (u, v))
 		g.close()
-		self.i = self.i+1
+		self.i = self.i+1 """
 
 
 #**********************************************************************************************************************************
