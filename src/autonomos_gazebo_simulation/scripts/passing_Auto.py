@@ -100,7 +100,7 @@ class driver():
 		speed = np.abs(vel)*-800
 		angle = ((ang + 1)/2)*180
 
-		if abs(speed) <= 600: speed = -600
+		if abs(speed) <= 500: speed = -500
 		
 		self.Vpub.publish(int(speed))
 		self.Spub.publish(int(angle))
