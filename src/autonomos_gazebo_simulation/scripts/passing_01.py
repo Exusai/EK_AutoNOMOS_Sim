@@ -61,7 +61,7 @@ class sensors_processing(object):
 	def callback_Lidar(self, data_lidar):
 		i = 0 
 		for r in data_lidar.ranges:
-			if (r>=3.0): r = 3.0 
+			if (r>=5.0): r = 5.0 
 			self.R[i] = r
 			i = i+1
 

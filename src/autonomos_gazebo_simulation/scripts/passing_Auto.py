@@ -33,7 +33,7 @@ class driver():
 	def callback_Lidar(self, data_lidar):
 		i = 0 
 		for r in data_lidar.ranges:
-			if (r>=3.0): r = 3.0 
+			if (r>=5.0): r = 5.0 
 			self.R[i] = r
 			i = i+1
 
@@ -51,7 +51,7 @@ class driver():
 
 		lidar = self.R[::-1]
 		lidar = tf.roll(lidar, 180, axis=0)
-		lidar /= 3
+		lidar /= 5
 		lidarImg = [
 			lidar,
 			lidar,
